@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        /* Base: Clean White (Light Mode) */
+        --background: 0 0% 100%;
+        --foreground: 222 47% 11%;
+
+        /* Cards: White with Shadow/Border */
+        --card: 0 0% 100%;
+        --card-foreground: 222 47% 11%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 222 47% 11%;
+
+        /* Primary: Royal Blue */
+        --primary: 221 83% 53%;
+        --primary-foreground: 0 0% 100%;
+
+        /* Secondary: Pale Slate */
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222 47% 11%;
+
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215 16% 47%;
+
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222 47% 11%;
+
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+
+        --border: 214 32% 91%;
+        --input: 214 32% 91%;
+        --ring: 221 83% 53%;
+
+        --radius: 1rem;
+
+        /* Light Mode Gradients */
+        --hero-gradient: radial-gradient(circle at top right, hsl(221 83% 53% / 0.1), transparent 50%), linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
+        --card-gradient: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
+        --text-gradient: linear-gradient(90deg, hsl(221 83% 53%) 0%, hsl(222 47% 11%) 100%);
+        --glow-primary: 0 10px 40px -10px hsl(221 83% 53% / 0.2);
+    }
+
+    .dark {
+        /* Base: Dark Cosmic Blue (Dark Mode) */
+        --background: 222 47% 11%;
+        --foreground: 0 0% 100%;
+
+        /* Cards: Slightly lighter blue */
+        --card: 217 33% 17%;
+        --card-foreground: 0 0% 100%;
+
+        --popover: 217 33% 17%;
+        --popover-foreground: 0 0% 100%;
+
+        /* Primary: Royal Blue -> Bright Blue */
+        --primary: 221 83% 53%;
+        --primary-foreground: 0 0% 100%;
+
+        /* Secondary: Muted Blue/Grey */
+        --secondary: 215 28% 17%;
+        --secondary-foreground: 0 0% 100%;
+
+        --muted: 217 33% 17%;
+        --muted-foreground: 215 20% 65%;
+
+        --accent: 221 83% 53%;
+        --accent-foreground: 0 0% 100%;
+
+        --destructive: 0 62% 30%;
+        --destructive-foreground: 0 0% 100%;
+
+        --border: 217 33% 22%;
+        --input: 217 33% 17%;
+        --ring: 221 83% 53%;
+
+        /* Dark Mode Gradients */
+        --hero-gradient: radial-gradient(circle at top right, hsl(221 83% 53% / 0.15), transparent 60%), linear-gradient(180deg, hsl(222 47% 11%) 0%, hsl(222 47% 8%) 100%);
+        --card-gradient: linear-gradient(135deg, hsl(217 33% 17%) 0%, hsl(217 33% 15%) 100%);
+        --text-gradient: linear-gradient(90deg, #FFFFFF 0%, #60A5FA 100%);
+        --glow-primary: 0 0 50px -10px hsl(221 83% 53% / 0.4);
+    }
+}
+
+@layer base {
+    * {
+        border-color: hsl(var(--border));
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background-color: hsl(var(--background));
+        color: hsl(var(--foreground));
+        font-family: 'Inter', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+}
+
+@layer utilities {
+    .text-gradient {
+        background: var(--text-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .glow-primary {
+        box-shadow: var(--glow-primary);
+    }
+
+    .hero-bg {
+        background: var(--hero-gradient);
+    }
+
+    .card-gradient {
+        background: var(--card-gradient);
+    }
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    animation: marquee 30s linear infinite;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
