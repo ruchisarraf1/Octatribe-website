@@ -1,0 +1,130 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Contact {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String?
+  service   String?
+  message   String
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+}
+
+model Service {
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  description String
+  content     String?  // Detailed rich text/markdown
+  price       String?  // e.g., "Starting at $999"
+  icon        String   @default("Settings")
+  features    String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model FAQ {
+  id        Int      @id @default(autoincrement())
+  question  String
+  answer    String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model CaseStudy {
+  id          Int      @id @default(autoincrement())
+  title       String
+  client      String
+  description String
+  image       String   // URL or path
+  videoUrl    String?  // Optional YouTube/Vimeo/Direct link
+  mediaType   String   @default("image") // "image" or "video"
+  category    String   // e.g., "Web Dev", "Marketing"
+  result      String   // e.g., "+300% Leads"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TeamMember {
+  id        Int      @id @default(autoincrement())
+  name      String
+  role      String
+  bio       String
+  image     String
+  linkedin  String?
+  twitter   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ProcessStep {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  icon        String   @default("Step")
+  order       Int      @default(0)
+}
+
+model ClientLogo {
+  id        Int      @id @default(autoincrement())
+  name      String
+  logoUrl   String
+  website   String?
+  order     Int      @default(0)
+}
+
+model SiteSettings {
+  id              Int      @id @default(1)
+  email           String   @default("info@octatribe.com")
+  phone           String   @default("+977-9811247700")
+  location        String   @default("Tripureshwor Kathmandu, Kathmandu, Nepal")
+  facebook        String?
+  twitter         String?
+  instagram       String?
+  linkedin        String?
+  metaTitle       String   @default("OctaTribe | Digital Intelligence Agency")
+  metaDescription String   @default("Empowering businesses through innovative digital solutions and strategic technology implementation.")
+  updatedAt       DateTime @updatedAt
+}
+
+model Testimonial {
+  id        Int      @id @default(autoincrement())
+  quote     String
+  author    String
+  role      String
+  company   String
+  image     String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model Newsletter {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+model Event {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  date        DateTime
+  location    String?
+  image       String   // URL or path
+  videoUrl    String?  // Optional YouTube/Vimeo link
+  gallery     String?  // Comma-separated gallery URLs
+  category    String   // e.g., "Corporate", "Workshop", "Launch"
+  link        String?  // Optional external link
+  isFeatured  Boolean  @default(false)
+  impact      String?
+  tags        String   @default("")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
